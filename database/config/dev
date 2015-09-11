@@ -1,0 +1,8 @@
+DATABASE="wordpress-dev"
+USER="plminus"
+PASSWORD="insecure"
+HOST="localhost"
+PORT="3306"
+
+ROOT_USER="root"
+ROOT_PASSWORD=""

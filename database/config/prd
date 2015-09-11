@@ -1,0 +1,8 @@
+DATABASE="wordpress"
+USER="plminus"
+PASSWORD="0291d7f08ea70bf4"
+HOST=""
+PORT="3306"
+
+ROOT_USER="root"
+ROOT_PASSWORD=""

@@ -1,0 +1,3 @@
+# wordpress
+
+Helper scripts.
