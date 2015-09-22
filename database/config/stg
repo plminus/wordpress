@@ -1,8 +1,0 @@
-DATABASE="wordpress-stg"
-USER="plminus"
-PASSWORD="49e8d5602b1557be"
-HOST=""
-PORT="3306"
-
-ROOT_USER="root"
-ROOT_PASSWORD=""

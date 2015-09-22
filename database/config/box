@@ -1,7 +1,7 @@
 DATABASE="wordpress-dev"
-USER="plminus"
-PASSWORD="49e8d5602b1557be"
-HOST=""
+USER="root"
+PASSWORD=""
+HOST="localhost"
 PORT="3306"
 
 ROOT_USER="root"
