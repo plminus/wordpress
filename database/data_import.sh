@@ -1,7 +1,7 @@
 #!/bin/bash
-#set -x
 #set -e
 #set -u
+#set -x
 
 CWD=`pwd`
 SWD=`(cd \`dirname $0\` && pwd)`

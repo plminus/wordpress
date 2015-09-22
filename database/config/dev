@@ -1,4 +1,4 @@
-DATABASE="wordpress-dev"
+DATABASE="wordpress_development"
 USER="plminus"
 PASSWORD="49e8d5602b1557be"
 HOST=""

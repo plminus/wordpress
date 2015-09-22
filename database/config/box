@@ -1,4 +1,4 @@
-DATABASE="wordpress-dev"
+DATABASE="wordpress_development"
 USER="root"
 PASSWORD=""
 HOST="localhost"
