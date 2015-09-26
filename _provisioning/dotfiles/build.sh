@@ -21,15 +21,19 @@ test ! -d "$PATH_TO_DOTFILES" && PATH_TO_DOTFILES="/vagrant/dotfiles"
 
 cp -Rp $PATH_TO_DOTFILES/.[A-Za-z]* ~/
 
-if [ "$PLATFORM" = "aws" ]; then
-  test -f ~/.aws/config.iam && cp -f ~/.aws/config.iam ~/.aws/config
-fi
+chmod 700 ~/.ssh
+chmod 600 ~/.ssh/authorized_keys
+chmod 600 ~/.ssh/config
+chmod 400 ~/.ssh/id_rsa*
+chmod 644 ~/.ssh/*.pub
 
-test -f ~/.aws/config.iam && rm -f ~/.aws/config.iam
+test "$PLATFORM" = "aws"  && test -f ~/.aws/config.iam && cp -f ~/.aws/config.iam ~/.aws/config
+test -f ~/.aws/config.iam && rm   -f ~/.aws/config.iam
 
-# }}}
-
+# reload
 test -f ~/.bash_profile && . ~/.bash_profile
 test -f ~/.bashrc       && . ~/.bashrc
+
+# }}}
 
 exit 0
