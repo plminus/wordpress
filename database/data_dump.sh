@@ -16,7 +16,8 @@ test ! "$CONFIG"                && echo "(abort) CONFIG must be specified"      
 test ! -f "$SWD/config/$CONFIG" && echo "(abort) CONFIG not found in $SWD/config" && exit 1
 
 . $SWD/config/$CONFIG
-test "$PASSWORD" && PASSWORD=" -p$PASSWORD "
+test "$PASSWORD"      && PASSWORD=" -p$PASSWORD "
+test "$ROOT_PASSWORD" && ROOT_PASSWORD=" -p$ROOT_PASSWORD "
 
 DUMP_FILE=${DATABASE}_$(date +%Y%m%d_%H%M).dump.gz
 
