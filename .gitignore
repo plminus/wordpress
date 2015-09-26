@@ -32,6 +32,7 @@ _dotfiles/.ssh/id_rsa.pub
 _dotfiles/.ssh/id_rsa_scm
 _dotfiles/.aws/config
 aws/dotenv
+aws/*-develop-*
 
 _vault*
 !_vault.bin
