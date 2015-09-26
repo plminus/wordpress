@@ -109,7 +109,7 @@ cd /vagrant/provisioning ;
 
 ### (10) create database
 
-run the database import script on your vm
+run the database create script on your vm
 
 ```
 cd /srv/scripts/database ;
