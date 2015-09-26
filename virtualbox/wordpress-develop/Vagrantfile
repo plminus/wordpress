@@ -1,0 +1,59 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# config params {{{
+
+HOSTNAME   = File.basename(Dir.pwd).gsub(/_/, "-")
+BOX        = "centos67"
+BOX_URL    = "http://opscode-vm-bento.s3.amazonaws.com/vagrant/virtualbox/opscode_centos-6.7_chef-provisionerless.box"
+PRIVATE_IP = "dhcp"
+#PRIVATE_IP = "172.28.128.3"
+CPU        = 1
+MEM        = 1024
+#MACADDR2   = "08002761A44A"
+
+# }}}
+
+VAGRANTFILE_API_VERSION = "2"
+
+Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
+  config.vm.define "#{HOSTNAME}" do |node|
+    # default provider {{{
+
+    node.vm.provider :virtualbox do |provider, override|
+      platform = "virtualbox"
+      username = "vagrant"
+
+      override.vm.hostname  = "#{HOSTNAME}"
+      override.vm.box       = "#{BOX}"
+      override.vm.box_url   = "#{BOX_URL}"
+      override.ssh.username = username
+      override.ssh.pty      = false
+
+      if PRIVATE_IP == 'dhcp'
+        override.vm.network :private_network, type: "dhcp"
+      else
+        override.vm.network :private_network, ip:   "#{PRIVATE_IP}"
+      end
+
+      provider.name = "#{HOSTNAME}"
+     #provider.gui  =  true
+
+      provider.customize ["modifyvm", :id, "--cpus",                "#{CPU}"]
+      provider.customize ["modifyvm", :id, "--memory",              "#{MEM}"]
+      provider.customize ["modifyvm", :id, "--ioapic",              "on"]
+      provider.customize ["modifyvm", :id, "--natdnsproxy1",        "off"]
+      provider.customize ["modifyvm", :id, "--natdnshostresolver1", "off"]
+     #provider.customize ["modifyvm", :id, "--macaddress2",         "#{MACADDR2}"]
+
+      # synced_folder config
+      #override.vm.synced_folder "./", "/vagrant", disabled: false
+      override.vm.synced_folder "./", "/vagrant", type: "nfs", disabled: false
+
+      # enable sudo w/out tty
+      # NOTE: setting [ ssh.pty = true ] causes file provisioner fail
+    end
+
+    # }}}
+  end
+end

@@ -1,0 +1,25 @@
+# fpm_status
+location ^~ /fpm_status {
+    allow  127.0.0.1;
+    allow  172.31.0.0/16;
+    allow  192.168.0.0/16;
+    allow  10.0.0.0/8;
+    deny   all;
+
+    include  /etc/nginx/fastcgi;
+
+    access_log  off;
+}
+
+# fpm_ping
+location ^~ /fpm_ping {
+    allow  127.0.0.1;
+    allow  172.31.0.0/16;
+    allow  192.168.0.0/16;
+    allow  10.0.0.0/8;
+    deny   all;
+
+    include  /etc/nginx/fastcgi;
+
+    access_log  off;
+}

@@ -1,0 +1,8 @@
+location = /favicon.ico                          { access_log off; log_not_found off; }
+location = /robots.txt                           { access_log off; log_not_found off; }
+location = /apple-touch-icon.png                 { access_log off; log_not_found off; }
+location = /apple-touch-icon-precomposed.png     { access_log off; log_not_found off; }
+
+location ~ /\.                                   { access_log off; log_not_found off; return 404; }
+location ~* (readme|readme-[^\.]+)\.(txt|html?)$ { access_log off; log_not_found off; return 404; }
+location ~* .*\.(bak|log|sql|tmp|swp|swo)$       { access_log off; log_not_found off; return 404; }

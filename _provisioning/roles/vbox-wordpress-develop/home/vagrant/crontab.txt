@@ -1,0 +1,1 @@
+0 3 * * 0 /srv/scripts/redis/flushall.sh >/dev/null 2>&1 && echo "(redis) FLUSHALL done" | /usr/local/bin/slack >/dev/null 2>&1

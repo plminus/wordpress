@@ -1,0 +1,57 @@
+server {
+    listen      8888;
+    server_name phpmyadmin.server;
+
+    root        /usr/share/phpMyAdmin;
+    index       index.php;
+    charset     utf-8;
+
+#   access_log  /var/log/nginx/phpmyadmin.access.log  main;
+    access_log  /var/log/nginx/phpmyadmin.access.log  ltsv;
+    error_log   /var/log/nginx/phpmyadmin.error.log   error;
+
+    gzip               off;
+    gzip_vary          off;
+    keepalive_timeout  0;
+    port_in_redirect   off;
+
+    # acl
+    include /etc/nginx/include/acl;
+
+    # maint
+    include /etc/nginx/include/maint;
+
+    # drop
+    include /etc/nginx/include/drop;
+
+    location / {
+        # show maint page
+        if ($go_maint = 1) {
+            return  503;
+        }
+
+        try_files $uri @phpmyadmin;
+
+        location ~ \.php$ {
+            if (!-f $request_filename) {
+                return 404;
+                break;
+            }
+            try_files $uri @phpmyadmin;
+        }
+    }
+
+    location ~* \.(ico|css|js|gif|jpe?g|png|woff)(\?[0-9]+)?$ {
+        access_log     off;
+        log_not_found  off;
+        rewrite_log    off;
+        expires        1d;
+        add_header     Cache-Control public;
+    }
+
+    location @phpmyadmin {
+        internal;
+        include /etc/nginx/fastcgi;
+    }
+
+}

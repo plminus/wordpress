@@ -1,0 +1,40 @@
+#
+# Handle asset files
+#
+
+# disable caching your document html and data
+#location ~* \.(?:manifest|appcache|html?|xml|json)$ {
+#    # access_log logs/static.log; # I don't usually include a static log
+#    expires -1;
+#}
+
+# Contents
+location ~* \.(?:html?|xml|json)(\?[0-9]+)?$ {
+    add_header Cache-Control "public";
+    expires    5m;
+
+    # show maint page
+    if ($go_maint = 1) {
+        root  /srv/html;
+    }
+}
+
+# Feed
+location ~* \.(?:rss|atom)(\?[0-9]+)?$ {
+    add_header Cache-Control "public";
+    expires    5m;
+}
+
+# Media: images, icons, video, audio, HTC
+location ~* \.(?:jpg|jpeg|gif|png|ico|cur|gz|svg|svgz|mp4|ogg|ogv|webm|htc|woff)(\?[0-9]+)?$ {
+    access_log off;
+    add_header Cache-Control "public";
+    expires    1M;
+}
+
+# CSS and Javascript
+location ~* \.(?:css|js)(\?[0-9]+)?$ {
+    access_log off;
+    add_header Cache-Control "public";
+    expires    1M;
+}

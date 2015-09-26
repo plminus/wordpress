@@ -1,0 +1,44 @@
+[DEFAULT]
+ignoreip = 127.0.0.1/8 172.0.0.0/8 192.168.0.0/16 10.0.0.0/16
+bantime  = 600
+findtime = 600
+maxretry = 3
+backend  = auto
+usedns   = no
+
+#bantime  = 60      ; 1 min
+#bantime  = 3600    ; 1 hour
+#bantime  = 86400   ; 1 day
+#bantime  = 604800  ; 1 week
+#bantime  = 2592000 ; 1 month (30 days)
+
+
+[ssh-iptables]
+
+enabled  = true
+filter   = sshd
+action   = iptables[name=SSH, port=ssh, protocol=tcp]
+           slack[name=SSH]
+logpath  = /var/log/secure
+maxretry = 3
+bantime  = 604800
+
+
+[ssh-ddos]
+
+enabled  = false
+filter   = sshd-ddos
+action   = iptables[name=SSHDDOS, port=ssh, protocol=tcp]
+           slack[name=SSHDDOS]
+logpath  = /var/log/sshd.log
+maxretry = 2
+bantime  = 3600
+
+
+[nginx-http-auth]
+
+enabled  = false
+filter   = nginx-http-auth
+action   = iptables-multiport[name=nginx-http-auth,port="80,443"]
+logpath  = /var/log/nginx/error.log
+bantime  = 3600

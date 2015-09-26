@@ -1,0 +1,9 @@
+# Name: Percona RPM Repository
+# URL: http://www.percona.com/percona-lab.html
+[percona]
+name = CentOS $releasever - Percona
+baseurl=http://repo.percona.com/centos/6Server/os/$basearch/
+gpgcheck=1
+enabled=0
+gpgkey = file:///etc/pki/rpm-gpg/RPM-GPG-KEY-percona
+priority=2

@@ -1,0 +1,18 @@
+# Device switching flag
+set $is_mobile 0;
+
+if ($http_user_agent ~ Android) {
+    set $is_mobile 1;
+}
+
+if ($http_user_agent ~ iPhone) {
+    set $is_mobile 1;
+}
+
+if ($http_user_agent ~ iPod) {
+    set $is_mobile 1;
+}
+
+if ($http_user_agent ~ iPad) {
+    set $is_mobile 1;
+}

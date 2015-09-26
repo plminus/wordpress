@@ -1,0 +1,48 @@
+#!/bin/bash
+#set -x
+#set -e
+#set -u
+
+CWD=$(pwd)
+SWD=$(cd $(dirname $0) && pwd)
+
+IFS_BACKUP=$IFS
+IFS=$'\n'
+
+# config {{{
+
+WEBHOOK_URL="https://hooks.slack.com/services/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"
+BOTNAME="bot-vm"
+CHANNEL="#bot"
+EMOJI="rocket"
+
+MESSAGE=${1:-"<!channel> hello"}
+test -p /dev/stdin && MESSAGE=$(cat -)
+
+MDFLAG=0
+test "$1" = "-m" && MDFLAG=1
+test "$2" = "-m" && MDFLAG=1
+
+# }}}
+# send {{{
+
+TEXT=""
+for i in $MESSAGE
+do
+  test $TEXT && TEXT="${TEXT}\n"
+  TEXT="${TEXT}${i}"
+done
+#TEXT="\`\`\`$TEXT\`\`\`"
+test $MDFLAG = 1 && TEXT="\`\`\`$TEXT\`\`\`"
+
+DATA=`cat <<_EOT_
+payload={"channel": "$CHANNEL", "username": "$BOTNAME", "text": "$TEXT", "icon_emoji": ":${EMOJI}:"}
+_EOT_`
+
+curl -X POST --data-urlencode "$DATA" $WEBHOOK_URL
+
+# }}}
+
+IFS=$IFS_BACKUP
+
+exit 0

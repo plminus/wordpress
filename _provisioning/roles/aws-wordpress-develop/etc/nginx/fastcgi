@@ -1,0 +1,37 @@
+# fastcgi
+
+set $proxy_https '';
+if ( $http_x_forwarded_proto = 'https' ) {
+    set $proxy_https 'on';
+}
+
+expires                      off;
+
+fastcgi_index                index.php;
+fastcgi_pass                 phpfpm;
+#fastcgi_pass                 unix:/var/run/php-fpm.sock;
+fastcgi_split_path_info      ^(.+\.php)(/.+)$;
+
+fastcgi_intercept_errors     off;
+fastcgi_connect_timeout      60;
+fastcgi_read_timeout         600;
+fastcgi_send_timeout         60;
+fastcgi_buffers              16 16k;
+fastcgi_buffer_size          32k;
+fastcgi_busy_buffers_size    32k;
+fastcgi_temp_file_write_size 256k;
+
+include                      /etc/nginx/fastcgi_params;
+
+fastcgi_param                HTTPS        $proxy_https     if_not_empty;
+fastcgi_param                REMOTE_ADDR  $http_x_real_ip  if_not_empty;
+
+fastcgi_pass_header          X-Accel-Buffering;
+fastcgi_pass_header          X-Accel-Charset;
+fastcgi_pass_header          X-Accel-Expires;
+fastcgi_pass_header          X-Accel-Limit-Rate;
+fastcgi_pass_header          X-Accel-Redirect;
+
+fastcgi_hide_header          Link;
+fastcgi_hide_header          Server;
+fastcgi_hide_header          X-Pingback;

@@ -1,0 +1,10 @@
+Defaults    !requiretty
+
+Defaults    env_keep += "SSH_AUTH_SOCK"
+Defaults    env_keep += "PATH"
+
+Defaults    secure_path = /usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
+
+%wheel      ALL=(ALL)  ALL
+ec2-user    ALL=(ALL)  NOPASSWD: ALL
+vagrant     ALL=(ALL)  NOPASSWD: ALL

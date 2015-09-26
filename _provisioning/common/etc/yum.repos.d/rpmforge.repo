@@ -1,0 +1,37 @@
+# http://wiki.centos.org/AdditionalResources/Repositories/RPMForge
+# yum install http://pkgs.repoforge.org/rpmforge-release/rpmforge-release-0.5.3-1.el6.rf.x86_64.rpm
+
+### Name: RPMforge RPM Repository for RHEL 6 - dag
+### URL: http://rpmforge.net/
+
+[rpmforge]
+name=RHEL 6 - RPMforge.net - dag
+baseurl=http://apt.sw.be/redhat/el6/en/$basearch/rpmforge
+mirrorlist=http://mirrorlist.repoforge.org/el6/mirrors-rpmforge
+#mirrorlist=file:///etc/yum.repos.d/mirrors-rpmforge
+protect=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
+gpgcheck=1
+enabled=0
+priority=5
+
+[rpmforge-extras]
+name=RHEL 6 - RPMforge.net - extras
+baseurl=http://apt.sw.be/redhat/el6/en/$basearch/extras
+mirrorlist=http://mirrorlist.repoforge.org/el6/mirrors-rpmforge-extras
+#mirrorlist=file:///etc/yum.repos.d/mirrors-rpmforge-extras
+protect=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
+gpgcheck=1
+enabled=0
+priority=5
+
+[rpmforge-testing]
+name=RHEL 6 - RPMforge.net - testing
+baseurl=http://apt.sw.be/redhat/el6/en/$basearch/testing
+mirrorlist=http://mirrorlist.repoforge.org/el6/mirrors-rpmforge-testing
+#mirrorlist=file:///etc/yum.repos.d/mirrors-rpmforge-testing
+protect=0
+gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-rpmforge-dag
+gpgcheck=1
+enabled=0

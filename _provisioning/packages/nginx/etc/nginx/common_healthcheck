@@ -1,0 +1,13 @@
+#
+# Handle healthcheck access
+#
+location /healthcheck.html {
+    access_log   off;
+    rewrite_log  off;
+
+    # detach from loadbalancer
+    if (-f /srv/html/sys_out_loadbalancer) {
+        return  503;
+    }
+    return  200;
+}

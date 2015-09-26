@@ -1,0 +1,31 @@
+# Maintenance mode switching flag
+set $go_maint 0;
+
+# check if maintenance mode switching file exists
+if (-f /srv/html/sys_in_maint) {
+    set $go_maint 1;
+}
+
+# localhost
+#if ($http_x_forwarded_for ~ "^127\.0\.0\.1$") {
+if ($remote_addr ~ "^127\.0\.0\.1$") {
+    set $go_maint 0;
+}
+
+# localnetwork
+#if ($http_x_forwarded_for ~ "^172\.31\.") {
+if ($remote_addr ~ "^172\.31\.") {
+    set $go_maint 0;
+}
+
+# localnetwork
+#if ($http_x_forwarded_for ~ "^192\.168\.") {
+if ($remote_addr ~ "^192\.168\.") {
+    set $go_maint 0;
+}
+
+# localnetwork
+#if ($http_x_forwarded_for ~ "^10\.") {
+if ($remote_addr ~ "^10\.") {
+    set $go_maint 0;
+}
