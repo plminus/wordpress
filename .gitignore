@@ -1,5 +1,6 @@
 !.gitignore
 !.gitkeep
+! wp-content/uploads
 
 *.bak
 *.log
@@ -13,4 +14,3 @@ wp-config.php
 wp-content/cache
 wp-content/object-cache.php
 wp-content/upgrade
-wp-content/uploads
