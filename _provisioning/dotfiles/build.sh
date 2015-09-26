@@ -24,7 +24,7 @@ cp -Rp $PATH_TO_DOTFILES/.[A-Za-z]* ~/
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/config
-chmod 400 ~/.ssh/id_rsa*
+chmod 600 ~/.ssh/id_rsa*
 chmod 644 ~/.ssh/*.pub
 
 test "$PLATFORM" = "aws"  && test -f ~/.aws/config.iam && cp -f ~/.aws/config.iam ~/.aws/config
