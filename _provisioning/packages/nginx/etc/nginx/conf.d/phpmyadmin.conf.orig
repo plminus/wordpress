@@ -16,7 +16,7 @@ server {
     port_in_redirect   off;
 
     # acl
-    include /etc/nginx/include/acl;
+#   include /etc/nginx/include/acl;
 
     # maint
     include /etc/nginx/include/maint;
@@ -25,6 +25,9 @@ server {
     include /etc/nginx/include/drop;
 
     location / {
+        # acl
+#       include /etc/nginx/include/acl;
+
         # show maint page
         if ($go_maint = 1) {
             return  503;
@@ -33,6 +36,9 @@ server {
         try_files $uri @phpmyadmin;
 
         location ~ \.php$ {
+            # acl
+#           include /etc/nginx/include/acl;
+
             if (!-f $request_filename) {
                 return 404;
                 break;

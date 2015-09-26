@@ -6,7 +6,6 @@ allow  127.0.0.1;       # localhost
 allow  172.31.0.0/16;   # localnetwork
 allow  192.168.0.0/16;  # localnetwork
 allow  10.0.0.0/8;      # localnetwork
-allow  117.102.182.83;  # zuu office
 
 deny all;
 
