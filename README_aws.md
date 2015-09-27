@@ -49,7 +49,7 @@ AWS_KEYPAIR_NAME="kiyomizu"
 
 ```
 cd  ${PROJ_HOME}/aws ;
-cd -Rp ./plminus-tmpl ./wordpress-develop-{YOUR_NAME} ;
+cp -Rp ./plminus-tmpl ./wordpress-develop-{YOUR_NAME} ;
 ```
 
 ### (5) run the provisioner to build your own ec2 instance
