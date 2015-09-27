@@ -21,6 +21,8 @@ test ! -d "$PATH_TO_DOTFILES" && PATH_TO_DOTFILES="/vagrant/dotfiles"
 
 cp -Rp $PATH_TO_DOTFILES/.[A-Za-z]* ~/
 
+test ! -f ~/.ssh/id_rsa_scm && cat ~/.ssh/id_rsa > ~/.ssh/id_rsa_scm
+
 chmod 700 ~/.ssh
 chmod 600 ~/.ssh/authorized_keys
 chmod 600 ~/.ssh/config
