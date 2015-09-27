@@ -13,13 +13,43 @@ cd  ${PROJ_HOME}
 ./vagrant_install_plugins.sh ;
 ```
 
-### (2) run the provisioner to build your wordpress-develop virtual-machine
+### (2) place your own ssh private and public keys
+
+```
+cd  ${PROJ_HOME}/_dotfiles/.ssh ;
+cp  -fp ~/.ssh/id_rsa      ./id_rsa ;
+cp  -fp ~/.ssh/id_rsa.pub  ./id_rsa.pub ;
+```
+
+Make sure you can `git clone/pull/push` to the repository with this `id_rsa` key.
+
+### (3) place your own aws credentials
+
+You need this `only if` you want to access aws resource from your vm via `awscli`.
+
+```
+cd  ${PROJ_HOME}/_dotfiles/.aws ;
+cp  ./config.tmpl ./config ;
+vim ./config ;
+```
+
+This file should look like this
+
+```
+[default]
+aws_access_key_id     = XXXXXXXXXXXXXXXXXXXX
+aws_secret_access_key = YYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYYY
+output = json
+region = ap-northeast-1
+```
+
+### (4) run the provisioner to build your virtual-machine
 
 prepare files
 
 ```
 cd  ${PROJ_HOME}/virtualbox/wordpress-develop ;
-./troop.sh -m ;
+./troop.sh ;
 ```
 
 build your vm
@@ -29,7 +59,7 @@ vagrant up ;
 vagrant status ;
 ```
 
-### (3) edit /etc/hosts
+### (5) edit /etc/hosts
 
 check your vm's ip
 
@@ -43,7 +73,7 @@ save the ip in your /etc/hosts as `wordpress-develop.server` , should look like 
 YOUR_VM_IP  wordpress-develop.server
 ```
 
-### (4) setup your virtual-machine
+### (6) install base packages
 
 login on the vm
 
@@ -51,7 +81,7 @@ login on the vm
 vagrant ssh
 ```
 
-run the setup scripts on your vm
+run the base packages install script
 
 ```
 cd /vagrant/provisioning ;
@@ -68,13 +98,13 @@ sudo reboot
 wait few minutes till the the vm restarts, and then shutdown and start vm again
 
 ```
-sleep 180 ;
+sleep 60 ;
 vagrant halt ;
-sleep 30 ;
+sleep 10 ;
 vagrant up ;
 ```
 
-### (5) run wordpress setup script
+### (7) run wordpress setup script
 
 login on the vm
 
@@ -82,23 +112,27 @@ login on the vm
 vagrant ssh
 ```
 
-run the setup scripts on your vm
+run the setup scripts 
 
 ```
 cd /vagrant/provisioning ;
 ./build_vbox_wordpress_develop.sh ;
 ```
 
-### (6) create database
+Wordpress sources are deployed in `/var/www/vhosts/wordpress` and files uploaded through wordpress will be saved in `/var/www/vhosts/uploads` .
 
-run the database create script on your vm
+Be aware that `wp-content/uploads` is just a symlink to `/var/www/vhosts/uploads` directory.
+
+### (8) create database
+
+run the database create script
 
 ```
 cd /srv/scripts/database ;
 ./db_create.sh box ;
 ```
 
-### (7) proceed your wordpress installation
+### (9) proceed your wordpress installation
 
 [https://wordpress-develop.server/](https://wordpress-develop.server/)
 
