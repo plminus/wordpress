@@ -76,7 +76,7 @@ sudo vim /private/etc/hosts
 xxx.xxx.xxx.xxx  wordpress-develop-{YOUR_NAME}.server
 ```
 
-### (8) install base packages
+### (7) install base packages
 
 login on the ec2 instance
 
@@ -100,7 +100,7 @@ sudo reboot
 
 wait few minutes till the the ec2 instance restarts
 
-### (7) run wordpress setup script
+### (8) run wordpress setup script
 
 login on the ec2 instance
 
@@ -119,7 +119,7 @@ Wordpress sources are deployed in `/var/www/vhosts/wordpress` and files uploaded
 
 Be aware that `wp-content/uploads` is just a symlink to `/var/www/vhosts/uploads` directory.
 
-### (8) create database
+### (9) create database
 
 run the database create script on your vm
 
@@ -128,7 +128,7 @@ cd /srv/scripts/database ;
 ./db_create.sh box ;
 ```
 
-### (9) proceed your wordpress installation
+### (10) proceed your wordpress installation
 
 [ec2-wordpress-develop-{YOUR_NAME}.server](https://ec2-wordpress-develop-{YOUR_NAME}.server)
 
