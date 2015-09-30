@@ -5,7 +5,7 @@ PLUGINS=`cat <<_EOT_
 dotenv
 #sahara
 #vagrant-omnibus
-#vagrant-aws
+vagrant-aws
 #vagrant-digitalocean
 #vagrant-google
 #vagrant-linode
