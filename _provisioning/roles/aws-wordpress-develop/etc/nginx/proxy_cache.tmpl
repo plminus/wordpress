@@ -5,9 +5,11 @@ proxy_cache_key          "$scheme://$host$request_uri";
 proxy_cache_bypass       $http_cache_control; # Don't pull from cache based on "Cache-Control: no-cache" request header
 
 proxy_cache_valid        200  _LIFETIME_;
-proxy_cache_valid        301  1s;
-proxy_cache_valid        302  1s;
-proxy_cache_valid        404  1m;
+proxy_cache_valid        301  1m;
+proxy_cache_valid        302  1m;
+proxy_cache_valid        401  1s;
+proxy_cache_valid        404  5s;
+proxy_cache_valid        503  1s;
 
 proxy_cache_lock         on;
 proxy_cache_lock_timeout 5s;
