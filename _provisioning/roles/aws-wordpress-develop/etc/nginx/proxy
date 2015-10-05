@@ -7,9 +7,9 @@ proxy_headers_hash_max_size    2048;
 proxy_headers_hash_bucket_size  256;
 
 proxy_intercept_errors   off;
-proxy_connect_timeout    60;
-proxy_read_timeout       600;
-proxy_send_timeout       60;
+proxy_connect_timeout    60s;
+proxy_read_timeout       600s;
+proxy_send_timeout       60s;
 
 proxy_set_header         Host               $host;
 proxy_set_header         Remote-Addr        $remote_addr;
