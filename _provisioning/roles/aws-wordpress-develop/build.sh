@@ -155,25 +155,11 @@ cd $CWD
 
 # }}}
 
-# purge garbages
-# purge files {{{
+# redis
+# start redis {{{
 
-PURGE_LIST=`cat <<_EOT_
-var/log/newrelic/*
-var/log/nginx/*
-var/log/php-fpm/*
-_EOT_`
-
-if [ ! -f /tmp/.purged ]; then
-  for i in $PURGE_LIST
-  do
-    echo $i | grep -e "^$" -e "^#" >/dev/null 2>&1
-    test $? -eq 0 && continue
-
-    sudo rm -rfv /$i 2>/dev/null
-    touch /tmp/.purged
-  done
-fi
+sudo service redis start
+sudo service redis status
 
 # }}}
 
@@ -261,6 +247,28 @@ sudo service php-fpm status
 
 # }}}
 
+# purge garbages
+# purge files {{{
+
+PURGE_LIST=`cat <<_EOT_
+var/log/newrelic/*
+var/log/nginx/*
+var/log/php-fpm/*
+_EOT_`
+
+if [ ! -f /tmp/.purged ]; then
+  for i in $PURGE_LIST
+  do
+    echo $i | grep -e "^$" -e "^#" >/dev/null 2>&1
+    test $? -eq 0 && continue
+
+    sudo rm -rfv /$i 2>/dev/null
+    touch /tmp/.purged
+  done
+fi
+
+# }}}
+
 # nginx
 # copy files {{{
 
@@ -310,14 +318,6 @@ copy_files $SWD "$LIST" 0644 root:root
 
 sudo service nginx configtest && sudo service nginx restart
 sudo service nginx status
-
-# }}}
-
-# redis
-# start redis {{{
-
-sudo service redis start
-sudo service redis status
 
 # }}}
 
