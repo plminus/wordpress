@@ -17,9 +17,9 @@
 // ** MySQL settings ** //
 $db_data = array(
 	'database' => 'wordpress_development',
-	'username' => 'plminus',
-	'password' => '49e8d5602b1557be',
-	'host'     => 'xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx',
+	'username' => 'root',
+	'password' => '',
+	'host'     => 'localhost',
 //	'database' => 'wordpress',
 //	'username' => 'plminus',
 //	'password' => '0291d7f08ea70bf4',
