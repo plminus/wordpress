@@ -138,8 +138,8 @@ else
 fi
 
 cd $APP_DIR/$APP_NAME
-cp -fp ./robots.box.txt    ./robots.txt
-cp -fp ./wp-config.box.php ./wp-config.php
+cp -fp ./robots.dev.txt    ./robots.txt
+cp -fp ./wp-config.dev.php ./wp-config.php
 
 cd $CWD
 
